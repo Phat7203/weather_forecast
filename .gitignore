@@ -54,3 +54,4 @@ app.*.map.json
 /back_end/yarn-debug.log*
 /back_end/yarn-error.log*
 /back_end/.pnpm-debug.log*
+/back_end/serviceAccountKey.json*
