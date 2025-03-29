@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class ForecastCard extends StatelessWidget {
+class ForecastCard extends StatefulWidget {
   final Map<String, dynamic>? forecast;
 
   const ForecastCard({super.key, required this.forecast});
 
+  @override
+  State<ForecastCard> createState() => _ForecastCardState();
+}
+
+class _ForecastCardState extends State<ForecastCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,18 +21,18 @@ class ForecastCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('${forecast?["date"]}',
+              Text('${widget.forecast?["date"]}',
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white)),
-              Image.network('https:${forecast?["day"]["condition"]["icon"]}',
+              Image.network('https:${widget.forecast?["day"]["condition"]["icon"]}',
                   height: 40),
-              Text('Temp: ${forecast?["day"]["avgtemp_c"]}°C',
+              Text('Temp: ${widget.forecast?["day"]["avgtemp_c"]}°C',
                   style: TextStyle(color: Colors.white)),
-              Text('Wind: ${forecast?["day"]["maxwind_kph"]} km/h',
+              Text('Wind: ${widget.forecast?["day"]["maxwind_kph"]} km/h',
                   style: TextStyle(color: Colors.white)),
-              Text('Humidity: ${forecast?["day"]["avghumidity"]}%',
+              Text('Humidity: ${widget.forecast?["day"]["avghumidity"]}%',
                   style: TextStyle(color: Colors.white)),
             ],
           ),
