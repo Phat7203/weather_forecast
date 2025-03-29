@@ -6,8 +6,7 @@ const cron = require("node-cron");
 const cors = require("cors");
 require("dotenv").config();
 
-// Khởi tạo Firebase Admin SDK
-const serviceAccount = require("./serviceAccountKey.json"); // Thay bằng tệp JSON Firebase của bạn
+const serviceAccount = JSON.parse(process.env.FIREBASE_CREDENTIALS);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -64,7 +63,7 @@ app.post("/unsubscribe", async (req, res) => {
 
 
 cron.schedule("0 7 * * *", async () => {
-  console.log("🔔 Đang gửi email thời tiết...");
+  console.log("Đang gửi email thời tiết...");
   const subscribers = await db.collection("subscribers").get();
   const emails = [];
 
